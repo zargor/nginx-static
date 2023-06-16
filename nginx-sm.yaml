@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: my-nginx
+  name: my-nginx
+  namespace: sre-test
+spec:
+  endpoints:
+    - interval: 30s
+      port: exporter
+      scrapeTimeout: 30s
+  selector:
+    matchLabels:
+      run: my-nginx
